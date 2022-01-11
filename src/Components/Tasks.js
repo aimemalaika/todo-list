@@ -1,0 +1,113 @@
+import setEditable from './domManupulation.js';
+import refreshIcon from '../assets/images/reload.png';
+import moreAction from '../assets/images/hree-dots-vector.png';
+
+class Tasks {
+  static list = document.querySelector('ul');
+
+  static db = () => {
+    const datas = [{
+      descption: 'task 1',
+      completed: true,
+      index: 1,
+    }, {
+      descption: 'task 2',
+      completed: false,
+      index: 2,
+    }, {
+      descption: 'task 3',
+      completed: true,
+      index: 3,
+    }, {
+      descption: 'task 6',
+      completed: true,
+      index: 6,
+    }, {
+      descption: 'task 7',
+      completed: false,
+      index: 7,
+    }, {
+      descption: 'task 8',
+      completed: true,
+      index: 8,
+    }, {
+      descption: 'task 9',
+      completed: false,
+      index: 9,
+    }, {
+      descption: 'task 4',
+      completed: true,
+      index: 4,
+    }, {
+      descption: 'task 5',
+      completed: false,
+      index: 5,
+    }];
+    return datas.sort((a, b) => parseFloat(a.index) - parseFloat(b.index));
+  }
+
+  static load = () => {
+    this.createHeader();
+    this.db().forEach((task) => {
+      this.createElement(task);
+    });
+    this.createFooter();
+  }
+
+  static createElement = (task) => {
+    const listItem = document.createElement('li');
+    const button = document.createElement('button');
+    const input = document.createElement('input');
+    const checkbox = document.createElement('input');
+    const p = document.createElement('p');
+    p.classList.add('checkmark');
+    const label = document.createElement('label');
+    if (task.completed) {
+      checkbox.setAttribute('checked', true);
+      input.classList.add('completed');
+    }
+    checkbox.type = 'checkbox';
+    label.appendChild(checkbox);
+    label.appendChild(p);
+    input.type = 'text';
+    input.classList.add('input', 'disabled');
+    input.addEventListener('click', () => setEditable(input));
+    const image = new Image();
+    image.classList.add('right-icon');
+    image.src = moreAction;
+    button.classList.add('drag-and-drop');
+    button.appendChild(image);
+    input.value = task.descption;
+    listItem.appendChild(label);
+    listItem.appendChild(input);
+    listItem.appendChild(button);
+    this.list.appendChild(listItem);
+  }
+
+  static createHeader = () => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('title');
+    const button = document.createElement('button');
+    const span = document.createElement('span');
+    span.innerText = '4';
+    span.classList.add('number-label');
+    const image = new Image();
+    image.classList.add('right-icon');
+    image.src = refreshIcon;
+    button.appendChild(image);
+    button.appendChild(span);
+    listItem.innerText = 'Today\'s To Do';
+    listItem.appendChild(button);
+    this.list.appendChild(listItem);
+  }
+
+  static createFooter = () => {
+    const listItem = document.createElement('li');
+    const button = document.createElement('button');
+    button.classList.add('full-width-btn');
+    button.innerText = 'Clear All Completed';
+    listItem.appendChild(button);
+    this.list.appendChild(listItem);
+  }
+}
+export default Tasks;
