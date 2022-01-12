@@ -76,7 +76,7 @@ class Tasks {
     input.classList.add('input', 'disabled');
     input.addEventListener('focus', () => setEditable(input));
     input.addEventListener('blur', () => setNonEditable(input));
-    button.classList.add('drag-and-drop');
+    button.classList.add('icon', 'drag-and-drop');
     input.value = task.descption;
     listItem.appendChild(label);
     listItem.appendChild(input);

@@ -1,11 +1,13 @@
 const setEditable = (element) => {
-  // document.querySelectorAll('li').forEach((li) => li.classList.remove('highlighted'));
+  element.nextSibling.classList.add('remove-line');
+  element.nextSibling.classList.remove('drag-and-drop');
   element.parentElement.classList.add('highlighted');
 };
 
 const setNonEditable = (element) => {
+  element.nextSibling.classList.remove('remove-line');
+  element.nextSibling.classList.add('drag-and-drop');
   element.parentElement.classList.remove('highlighted');
-  // document.querySelectorAll('li').forEach((li) => li.classList.remove('highlighted'));
 };
 
 const refreshPage = (element) => {
@@ -16,7 +18,6 @@ const refreshPage = (element) => {
 };
 
 const dragStart = () => {
-  // console.log('object start');
 };
 
 const dragOver = (e) => {
@@ -27,7 +28,6 @@ const dragOver = (e) => {
 };
 
 const dropOver = () => {
-  // console.log('object over');
 };
 
 const dragEnter = () => {

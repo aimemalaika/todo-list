@@ -25,7 +25,7 @@ li {
 
 li input {
   font-family: Helvetica, sans-serif;
-  font-size: 19px;
+  font-size: 16px;
 }
 
 li input[type='checkbox'] {
@@ -50,6 +50,9 @@ li input[type='checkbox'] {
 }
 
 .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
   width: 5px;
   height: 14px;
   margin-left: 4px;
@@ -88,6 +91,14 @@ button img:hover {
   filter: invert(0);
 }
 
+.icon {
+  opacity: 0.3;
+}
+
+.icon:hover {
+  opacity: 1;
+}
+
 .input {
   width: 90%;
   padding: 2px 5px;
@@ -114,17 +125,27 @@ button img:hover {
   border: none;
 }
 
-.drag-and-drop {
-  cursor: move;
+.drag-and-drop,
+.remove-line {
   width: 20px;
   height: 20px;
-  background-image: url(../images/hree-dots-vector.png);
   background-size: contain;
   margin: 10px;
 }
 
+.drag-and-drop {
+  cursor: move;
+  background-image: url(../images/hree-dots-vector.png);
+}
+
+.remove-line {
+  cursor: pointer;
+  background-image: url(../images/trash.png);
+}
+
 .completed {
   text-decoration: line-through;
+  color: #797979;
 }
 
 .number-label {
