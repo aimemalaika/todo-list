@@ -30,8 +30,7 @@ const dropOver = () => {
   // console.log('object over');
 };
 
-const dragEnter = (e) => {
-  console.log(e);
+const dragEnter = () => {
 };
 
 const dragLeave = (e) => {
