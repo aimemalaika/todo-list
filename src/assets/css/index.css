@@ -73,7 +73,8 @@ li input[type='checkbox']:checked ~ .checkmark::after {
   width: 100%;
 }
 
-button {
+.refrecher,
+.full-width-btn {
   width: 30px;
   height: 30px;
   border: none;
@@ -83,11 +84,16 @@ button {
   margin-bottom: auto;
 }
 
-button img {
+.refrecher {
+  background-image: url(../images/reload.png);
+  background-size: cover;
+}
+
+.refrecher img {
   filter: invert(80%);
 }
 
-button img:hover {
+.refrecher img:hover {
   filter: invert(0);
 }
 
@@ -126,7 +132,8 @@ button img:hover {
 }
 
 .drag-and-drop,
-.remove-line {
+.remove-line,
+.enter-submit {
   width: 20px;
   height: 20px;
   background-size: contain;
@@ -136,6 +143,11 @@ button img:hover {
 .drag-and-drop {
   cursor: move;
   background-image: url(../images/hree-dots-vector.png);
+}
+
+.enter-submit {
+  cursor: pointer;
+  background-image: url(../images/enter.png);
 }
 
 .remove-line {
@@ -151,12 +163,15 @@ button img:hover {
 .number-label {
   background-color: red;
   position: absolute;
-  margin: -5px -7px;
-  width: 12px;
-  height: 12px;
+  left: 67.5%;
+  top: 9.9%;
+  width: 13px;
+  text-align: center;
+  height: 13px;
+  line-height: 13px;
   color: #fff;
   border-radius: 100%;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .rotate-me {
