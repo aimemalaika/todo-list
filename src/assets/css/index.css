@@ -163,8 +163,8 @@ li input[type='checkbox']:checked ~ .checkmark::after {
 .number-label {
   background-color: red;
   position: absolute;
-  left: 67.5%;
-  top: 9.9%;
+  left: 68.4%;
+  top: 10.5%;
   width: 13px;
   text-align: center;
   height: 13px;
