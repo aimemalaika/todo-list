@@ -98,6 +98,7 @@ button img:hover {
   padding: 2px 5px;
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 .highlighted {
@@ -120,6 +121,11 @@ button img:hover {
 
 .drag-and-drop {
   cursor: move;
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/hree-dots-vector.png);
+  background-size: contain;
+  margin: 10px;
 }
 
 .completed {
@@ -135,4 +141,19 @@ button img:hover {
   color: #fff;
   border-radius: 100%;
   font-size: 9px;
+}
+
+.rotate-me {
+  animation:spin 2s linear infinite;
+}
+
+@keyframes spin { 
+  100% { 
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg); 
+  } 
+}
+
+.over {
+  background-color: #b4b4b6;
 }

@@ -1,6 +1,7 @@
-import setEditable from './domManupulation.js';
+import {
+  setEditable, refreshPage, addEventsListerners, setNonEditable,
+} from './domManupulation.js';
 import refreshIcon from '../assets/images/reload.png';
-import moreAction from '../assets/images/hree-dots-vector.png';
 
 class Tasks {
   static list = document.querySelector('ul');
@@ -52,11 +53,13 @@ class Tasks {
       this.createElement(task);
     });
     this.createFooter();
+    addEventsListerners();
   }
 
   static createElement = (task) => {
     const listItem = document.createElement('li');
-    const button = document.createElement('button');
+    listItem.classList.add('dragable');
+    const button = document.createElement('p');
     const input = document.createElement('input');
     const checkbox = document.createElement('input');
     const p = document.createElement('p');
@@ -71,16 +74,14 @@ class Tasks {
     label.appendChild(p);
     input.type = 'text';
     input.classList.add('input', 'disabled');
-    input.addEventListener('click', () => setEditable(input));
-    const image = new Image();
-    image.classList.add('right-icon');
-    image.src = moreAction;
+    input.addEventListener('focus', () => setEditable(input));
+    input.addEventListener('blur', () => setNonEditable(input));
     button.classList.add('drag-and-drop');
-    button.appendChild(image);
     input.value = task.descption;
     listItem.appendChild(label);
     listItem.appendChild(input);
     listItem.appendChild(button);
+    listItem.draggable = true;
     this.list.appendChild(listItem);
   }
 
@@ -96,6 +97,7 @@ class Tasks {
     image.src = refreshIcon;
     button.appendChild(image);
     button.appendChild(span);
+    button.addEventListener('click', () => refreshPage(button));
     listItem.innerText = 'Today\'s To Do';
     listItem.appendChild(button);
     this.list.appendChild(listItem);
