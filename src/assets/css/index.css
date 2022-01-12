@@ -166,7 +166,6 @@ li input[type='checkbox']:checked ~ .checkmark::after {
   color: #fff;
   border-radius: 100%;
   font-size: 12px;
-
 }
 
 .rotate-me {
