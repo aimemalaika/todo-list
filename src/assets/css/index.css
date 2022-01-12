@@ -132,7 +132,8 @@ li input[type='checkbox']:checked ~ .checkmark::after {
 }
 
 .drag-and-drop,
-.remove-line {
+.remove-line,
+.enter-submit {
   width: 20px;
   height: 20px;
   background-size: contain;
@@ -142,6 +143,11 @@ li input[type='checkbox']:checked ~ .checkmark::after {
 .drag-and-drop {
   cursor: move;
   background-image: url(../images/hree-dots-vector.png);
+}
+
+.enter-submit {
+  cursor: pointer;
+  background-image: url(../images/enter.png);
 }
 
 .remove-line {
