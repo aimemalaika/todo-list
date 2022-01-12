@@ -11,9 +11,9 @@ const setNonEditable = (element) => {
 };
 
 const refreshPage = (element) => {
-  element.children[0].classList.add('rotate-me');
+  element.classList.add('rotate-me');
   setTimeout(() => {
-    element.children[0].classList.remove('rotate-me');
+    element.classList.remove('rotate-me');
   }, 2000);
 };
 

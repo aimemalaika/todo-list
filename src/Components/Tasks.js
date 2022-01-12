@@ -1,7 +1,6 @@
 import {
-  setEditable, refreshPage, addEventsListerners, setNonEditable,
+  setEditable, addEventsListerners, setNonEditable,
 } from './domManupulation.js';
-import refreshIcon from '../assets/images/reload.png';
 
 class Tasks {
   static list = document.querySelector('ul');
@@ -48,7 +47,6 @@ class Tasks {
   }
 
   static load = () => {
-    this.createHeader();
     this.db().forEach((task) => {
       this.createElement(task);
     });
@@ -82,24 +80,6 @@ class Tasks {
     listItem.appendChild(input);
     listItem.appendChild(button);
     listItem.draggable = true;
-    this.list.appendChild(listItem);
-  }
-
-  static createHeader = () => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('title');
-    const button = document.createElement('button');
-    const span = document.createElement('span');
-    span.innerText = '4';
-    span.classList.add('number-label');
-    const image = new Image();
-    image.classList.add('right-icon');
-    image.src = refreshIcon;
-    button.appendChild(image);
-    button.appendChild(span);
-    button.addEventListener('click', () => refreshPage(button));
-    listItem.innerText = 'Today\'s To Do';
-    listItem.appendChild(button);
     this.list.appendChild(listItem);
   }
 

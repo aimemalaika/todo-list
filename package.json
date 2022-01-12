@@ -2,11 +2,11 @@
   "name": "to-do-list-app",
   "version": "1.0.0",
   "description": "In this project, you will build a simple HTML list of To Do tasks. The list will be styled according to the specifications listed later in this lesson. This simple web page will be built using webpack and served by a webpack dev server.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "webpack serve --open",
     "build": "webpack",
-    "test": "npx hint . && npx stylelint **/*.{css,scss} && npx eslint ."
+    "test": "npx lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=. && npx hint . && npx stylelint **/*.{css,scss} && npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aimemalaika/todo-list#readme",
   "devDependencies": {
+    "@lhci/cli": "^0.7.2",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.5.1",
     "eslint": "^7.32.0",
