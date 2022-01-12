@@ -1,0 +1,190 @@
+ul {
+  list-style-type: none;
+  width: 40%;
+  margin: auto;
+  border: 1px solid lightgray;
+  margin-top: 5em;
+  padding: 0;
+}
+
+.title {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  height: 50px;
+  line-height: 50px;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+li input {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+li input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.checkmark {
+  margin: 10px;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: 2px solid #b4b4b6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmark:hover {
+  border-color: #8c8c8f;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  width: 5px;
+  height: 14px;
+  margin-left: 4px;
+  border: solid #2196f3;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+li input[type='checkbox']:checked ~ .checkmark {
+  border-color: transparent;
+}
+
+li input[type='checkbox']:checked ~ .checkmark::after {
+  display: block;
+}
+
+.right-icon {
+  width: 100%;
+}
+
+.refrecher,
+.full-width-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.refrecher {
+  background-image: url(../images/reload.png);
+  background-size: cover;
+}
+
+.refrecher img {
+  filter: invert(80%);
+}
+
+.refrecher img:hover {
+  filter: invert(0);
+}
+
+.icon {
+  opacity: 0.3;
+}
+
+.icon:hover {
+  opacity: 1;
+}
+
+.input {
+  width: 90%;
+  padding: 2px 5px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.highlighted {
+  background-color: #fffeca;
+}
+
+.disabled {
+  cursor: default;
+}
+
+.full-width-btn {
+  width: 100%;
+  font-size: 15px;
+}
+
+.full-width-btn:hover {
+  color: red;
+  border: none;
+}
+
+.drag-and-drop,
+.remove-line,
+.enter-submit {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  margin: 10px;
+}
+
+.drag-and-drop {
+  cursor: move;
+  background-image: url(../images/hree-dots-vector.png);
+}
+
+.enter-submit {
+  cursor: pointer;
+  background-image: url(../images/enter.png);
+}
+
+.remove-line {
+  cursor: pointer;
+  background-image: url(../images/trash.png);
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #797979;
+}
+
+.number-label {
+  background-color: red;
+  position: absolute;
+  left: 67.5%;
+  top: 9.9%;
+  width: 13px;
+  text-align: center;
+  height: 13px;
+  line-height: 13px;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 12px;
+}
+
+.rotate-me {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.over {
+  background-color: #b4b4b6;
+}
