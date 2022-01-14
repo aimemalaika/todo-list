@@ -36,8 +36,29 @@ document.querySelectorAll('.current-task').forEach((form) => {
   form.addEventListener('submit', (el) => {
     el.preventDefault();
     if (el.target.children[0].value !== '') {
-      Tasks.updateData(el.target.children[0].getAttribute('data-task-id'), el.target.children[0].value);
+      Tasks.updateData(el.target.children[0].getAttribute('data-task-id'), 'descption', el.target.children[0].value);
       el.target.children[0].blur();
     }
   });
+});
+
+document.querySelectorAll('.check-stats').forEach((check) => {
+  check.addEventListener('click', () => {
+    Tasks.updateData(check.getAttribute('data-task-id'), 'completed', check.checked);
+    if (check.checked) {
+      check.parentElement.nextSibling.children[0].classList.add('completed');
+    } else {
+      check.parentElement.nextSibling.children[0].classList.remove('completed');
+    }
+  });
+});
+
+document.querySelector('#clear-all').addEventListener('click', () => {
+  const listObj = [];
+  document.querySelectorAll('.check-stats').forEach((checker) => {
+    if (checker.checked) {
+      listObj.push(checker);
+    }
+  });
+  Tasks.removeBook(listObj);
 });
