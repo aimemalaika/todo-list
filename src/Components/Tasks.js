@@ -57,6 +57,13 @@ class Tasks {
   static createElement = (task) => {
     const listItem = document.createElement('li');
     const form = document.createElement('form');
+    form.addEventListener('submit', (el) => {
+      el.preventDefault();
+      if (el.target.children[0].value !== '') {
+        Tasks.updateData(el.target.children[0].getAttribute('data-task-id'), el.target.children[0].value);
+        el.target.children[0].blur();
+      }
+    });
     form.classList.add('current-task');
     listItem.classList.add('dragable');
     const button = document.createElement('p');
