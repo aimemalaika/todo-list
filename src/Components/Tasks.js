@@ -37,7 +37,10 @@ class Tasks {
 
   static removeBook = (button) => {
     let counter = 0;
-    let result = this.db().filter((task) => task.index !== parseInt(button.getAttribute('data-task-id'), 10));
+    let result = this.db();
+    button.forEach((btn) => {
+      result = result.filter((task) => task.index !== parseInt(btn.getAttribute('data-task-id'), 10));
+    });
     result.forEach((row) => {
       row.index = counter;
       counter += 1;
@@ -48,9 +51,13 @@ class Tasks {
     document.querySelector('.number-label').innerText = count;
   }
 
-  static updateData(index, value) {
+  static updateData(index, prop, value) {
     const data = this.db();
-    data[index].descption = value;
+    if (prop === 'completed') {
+      data[index].completed = value;
+    } else {
+      data[index].descption = value;
+    }
     window.localStorage.setItem('tasks', JSON.stringify(data));
   }
 
@@ -60,7 +67,7 @@ class Tasks {
     form.addEventListener('submit', (el) => {
       el.preventDefault();
       if (el.target.children[0].value !== '') {
-        Tasks.updateData(el.target.children[0].getAttribute('data-task-id'), el.target.children[0].value);
+        Tasks.updateData(el.target.children[0].getAttribute('data-task-id'), 'descption', el.target.children[0].value);
         el.target.children[0].blur();
       }
     });
@@ -70,6 +77,15 @@ class Tasks {
     const input = document.createElement('input');
     input.setAttribute('data-task-id', task.index);
     const checkbox = document.createElement('input');
+    checkbox.setAttribute('data-task-id', task.index);
+    checkbox.addEventListener('change', () => {
+      Tasks.updateData(checkbox.getAttribute('data-task-id'), 'completed', checkbox.checked);
+      if (checkbox.checked) {
+        checkbox.parentElement.nextSibling.children[0].classList.add('completed');
+      } else {
+        checkbox.parentElement.nextSibling.children[0].classList.remove('completed');
+      }
+    });
     const p = document.createElement('p');
     p.classList.add('checkmark');
     const label = document.createElement('label');
@@ -78,6 +94,7 @@ class Tasks {
       input.classList.add('completed');
     }
     checkbox.type = 'checkbox';
+    checkbox.classList.add('check-stats');
     label.appendChild(checkbox);
     label.appendChild(p);
     input.type = 'text';
@@ -93,7 +110,7 @@ class Tasks {
     input.addEventListener('focus', () => {
       setEditable(input);
       button.addEventListener('click', () => {
-        Tasks.removeBook(button);
+        Tasks.removeBook([button]);
       });
     });
     input.addEventListener('blur', () => setNonEditable(input));
