@@ -10,19 +10,20 @@
 </head>
 
 <body>
-  <ul class="dragable-area">
-    <li class="title">
+  <header>
+    <div class="title">
       Today's To Do
       <button type="button" class="icon refrecher"></button>
       <span class="number-label">0</span>
-    </li>
-    <li>
+    </div>
+    <div>
       <form id="addItem" action="#">
         <input type="text" id="taskname" placeholder="Add to your list..." class="input disabled">
       </form>
       <p class="icon enter-submit"></p>
-    </li>
-  </ul>
+    </div>
+  </header>
+  <ul class="dragable-area"></ul>
   <footer>
     <button type="button" class="full-width-btn">Clear All Completed</button>
   </footer>

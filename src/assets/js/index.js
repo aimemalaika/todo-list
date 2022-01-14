@@ -16,7 +16,8 @@ const submitData = () => {
   const description = document.querySelector('#taskname');
   if (description.value !== '') {
     const taskObj = new Tasks(description.value, Tasks.db().length);
-    Tasks.addTask(taskObj);
+    const count = Tasks.addTask(taskObj);
+    document.querySelector('.number-label').innerText = count;
     description.value = '';
   }
 };

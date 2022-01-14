@@ -13,9 +13,13 @@ class Tasks {
 
   static list = document.querySelector('ul');
 
-  static db = () => ((window.localStorage.getItem('tasks') !== null) ? JSON.parse(window.localStorage.getItem('tasks')) : [])
+  static db = () => {
+    const datas = ((window.localStorage.getItem('tasks') !== null) ? JSON.parse(window.localStorage.getItem('tasks')) : []);
+    return datas.sort((a, b) => parseFloat(a.index) - parseFloat(b.index));
+  }
 
   static load = () => {
+    this.list.innerHTML = '';
     this.db().forEach((task) => {
       this.createElement(task);
     });
@@ -28,15 +32,20 @@ class Tasks {
     data.push(task);
     this.createElement(task);
     window.localStorage.setItem('tasks', JSON.stringify(data));
+    return this.db().length;
   }
 
   static removeBook = (button) => {
-    const result = this.db().filter((task) => task.index !== parseInt(button.getAttribute('data-task-id'), 10));
-    button.parentElement.remove();
+    let counter = 0;
+    let result = this.db().filter((task) => task.index !== parseInt(button.getAttribute('data-task-id'), 10));
     result.forEach((row) => {
-      row.index = result.length;
+      row.index = counter;
+      counter += 1;
     });
+    result = result.sort((a, b) => parseFloat(a.index) - parseFloat(b.index));
     window.localStorage.setItem('tasks', JSON.stringify(result));
+    const count = this.load();
+    document.querySelector('.number-label').innerText = count;
   }
 
   static updateData(index, value) {
