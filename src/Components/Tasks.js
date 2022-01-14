@@ -1,64 +1,67 @@
 import {
-  setEditable, addEventsListerners, setNonEditable,
+  setEditable,
+  addEventsListerners,
+  setNonEditable,
 } from './domManupulation.js';
 
 class Tasks {
+  constructor(descption, index) {
+    this.descption = descption;
+    this.completed = false;
+    this.index = index;
+  }
+
   static list = document.querySelector('ul');
 
   static db = () => {
-    const datas = [{
-      descption: 'task 1',
-      completed: true,
-      index: 1,
-    }, {
-      descption: 'task 2',
-      completed: false,
-      index: 2,
-    }, {
-      descption: 'task 3',
-      completed: true,
-      index: 3,
-    }, {
-      descption: 'task 6',
-      completed: true,
-      index: 6,
-    }, {
-      descption: 'task 7',
-      completed: false,
-      index: 7,
-    }, {
-      descption: 'task 8',
-      completed: true,
-      index: 8,
-    }, {
-      descption: 'task 9',
-      completed: false,
-      index: 9,
-    }, {
-      descption: 'task 4',
-      completed: true,
-      index: 4,
-    }, {
-      descption: 'task 5',
-      completed: false,
-      index: 5,
-    }];
+    const datas = ((window.localStorage.getItem('tasks') !== null) ? JSON.parse(window.localStorage.getItem('tasks')) : []);
     return datas.sort((a, b) => parseFloat(a.index) - parseFloat(b.index));
   }
 
   static load = () => {
+    this.list.innerHTML = '';
     this.db().forEach((task) => {
       this.createElement(task);
     });
-    this.createFooter();
     addEventsListerners();
+    return this.db().length;
+  }
+
+  static addTask = (task) => {
+    const data = this.db();
+    data.push(task);
+    this.createElement(task);
+    window.localStorage.setItem('tasks', JSON.stringify(data));
+    return this.db().length;
+  }
+
+  static removeBook = (button) => {
+    let counter = 0;
+    let result = this.db().filter((task) => task.index !== parseInt(button.getAttribute('data-task-id'), 10));
+    result.forEach((row) => {
+      row.index = counter;
+      counter += 1;
+    });
+    result = result.sort((a, b) => parseFloat(a.index) - parseFloat(b.index));
+    window.localStorage.setItem('tasks', JSON.stringify(result));
+    const count = this.load();
+    document.querySelector('.number-label').innerText = count;
+  }
+
+  static updateData(index, value) {
+    const data = this.db();
+    data[index].descption = value;
+    window.localStorage.setItem('tasks', JSON.stringify(data));
   }
 
   static createElement = (task) => {
     const listItem = document.createElement('li');
+    const form = document.createElement('form');
+    form.classList.add('current-task');
     listItem.classList.add('dragable');
     const button = document.createElement('p');
     const input = document.createElement('input');
+    input.setAttribute('data-task-id', task.index);
     const checkbox = document.createElement('input');
     const p = document.createElement('p');
     p.classList.add('checkmark');
@@ -72,23 +75,21 @@ class Tasks {
     label.appendChild(p);
     input.type = 'text';
     input.classList.add('input', 'disabled');
-    input.addEventListener('focus', () => setEditable(input));
-    input.addEventListener('blur', () => setNonEditable(input));
     button.classList.add('icon', 'drag-and-drop');
+    button.setAttribute('data-task-id', task.index);
     input.value = task.descption;
     listItem.appendChild(label);
-    listItem.appendChild(input);
+    form.appendChild(input);
+    listItem.appendChild(form);
     listItem.appendChild(button);
     listItem.draggable = true;
-    this.list.appendChild(listItem);
-  }
-
-  static createFooter = () => {
-    const listItem = document.createElement('li');
-    const button = document.createElement('button');
-    button.classList.add('full-width-btn');
-    button.innerText = 'Clear All Completed';
-    listItem.appendChild(button);
+    input.addEventListener('focus', () => {
+      setEditable(input);
+      button.addEventListener('click', () => {
+        Tasks.removeBook(button);
+      });
+    });
+    input.addEventListener('blur', () => setNonEditable(input));
     this.list.appendChild(listItem);
   }
 }

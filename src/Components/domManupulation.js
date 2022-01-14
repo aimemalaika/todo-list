@@ -1,13 +1,13 @@
 const setEditable = (element) => {
-  element.nextSibling.classList.add('remove-line');
-  element.nextSibling.classList.remove('drag-and-drop');
-  element.parentElement.classList.add('highlighted');
+  element.parentElement.nextSibling.classList.add('remove-line');
+  element.parentElement.nextSibling.classList.remove('drag-and-drop');
+  element.parentElement.parentElement.classList.add('highlighted');
 };
 
 const setNonEditable = (element) => {
-  element.nextSibling.classList.remove('remove-line');
-  element.nextSibling.classList.add('drag-and-drop');
-  element.parentElement.classList.remove('highlighted');
+  element.parentElement.nextSibling.classList.remove('remove-line');
+  element.parentElement.nextSibling.classList.add('drag-and-drop');
+  element.parentElement.parentElement.classList.remove('highlighted');
 };
 
 const refreshPage = (element) => {
