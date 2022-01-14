@@ -14,13 +14,18 @@
     <li class="title">
       Today's To Do
       <button type="button" class="icon refrecher"></button>
-      <span class="number-label">4</span>
+      <span class="number-label">0</span>
     </li>
     <li>
-      <input type="text" placeholder="Add to your list..." class="input disabled">
+      <form id="addItem" action="#">
+        <input type="text" id="taskname" placeholder="Add to your list..." class="input disabled">
+      </form>
       <p class="icon enter-submit"></p>
     </li>
   </ul>
+  <footer>
+    <button type="button" class="full-width-btn">Clear All Completed</button>
+  </footer>
 </body>
 
 </html>

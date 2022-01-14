@@ -17,7 +17,7 @@ ul {
 
 li {
   padding: 10px;
-  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -111,6 +111,18 @@ li input[type='checkbox']:checked ~ .checkmark::after {
   outline: none;
   border: none;
   background-color: transparent;
+  height: 36px;
+  line-height: 36px;
+}
+
+#taskname {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+
+form {
+  width: 100%;
 }
 
 .highlighted {
@@ -138,6 +150,7 @@ li input[type='checkbox']:checked ~ .checkmark::after {
   height: 20px;
   background-size: contain;
   margin: 10px;
+  background-repeat: no-repeat;
 }
 
 .drag-and-drop {
@@ -163,8 +176,8 @@ li input[type='checkbox']:checked ~ .checkmark::after {
 .number-label {
   background-color: red;
   position: absolute;
-  left: 67.5%;
-  top: 9.9%;
+  left: 68.4%;
+  top: 10.5%;
   width: 13px;
   text-align: center;
   height: 13px;
@@ -187,4 +200,14 @@ li input[type='checkbox']:checked ~ .checkmark::after {
 
 .over {
   background-color: #b4b4b6;
+}
+
+footer {
+  width: 40%;
+  margin: auto;
+  border: 1px solid lightgray;
+  height: 30px;
+  line-height: 30px;
+  padding: 10px 0;
+  background-color: #f4f4f4;
 }
